@@ -1,4 +1,4 @@
 
 
-game : ex12.cc
-	g++ -o ex12 ex12.cc
+game : game2.cc
+	g++ -o game2 game2.cc
