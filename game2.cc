@@ -86,35 +86,52 @@ void update_game(int key)
 }
 
 
-
+int ls=0;
 void ball()
 {
   screen[x][y]='o';
-  if (mx){
-    x++;
-    if (x == H-2)
-      mx = false;
-  }
-  if (mx==false){
-     x--;
-     if (x == 1)
-       mx = true;
-  }
-  if (my){
-    y++;
-    if (y == L-1)
-      my = false;
-  }
-  if (my==false){
-    y--;
-    if (y == 1)
-      my = true;
-  }
+  if (mx)
+    {
+      x++;
+    }
+     if (x==H)
+	{
+	  ls=1;
+	}
+     
+     if (screen[x][y]=='=')
+       {
+	 mx=false;
+       }
+     
+     if (mx==false)
+       {
+	 x--;
+	 if (x == 1)
+	   mx = true;
+       }
+     if (my)
+       {
+	 y++;
+	 if (y == L-1)
+	   my = false;
+       }
+     if (my==false)
+       {
+	 y--;
+	 if (y == 1)
+	   my = true;
+       }
+}
 
+
+/******************************************************************************/
+int Losegame()
+{
+  cout << "YOU LOSE!" << endl;
+  cout << "TRY AGAIN IF YOU WANT!" << endl;
 
 }
-/******************************************************************************/
-
 
 /******************************************************************************/
 
@@ -164,8 +181,10 @@ int main()
     clear_screen();
     bord();
     ball(); 
+
     update_game(key);
     screen_display();
     usleep(100 * 1000);
-  } while (key != 'q');
+  } while (key != 'q' && ls==0);
+  Losegame();
 }
